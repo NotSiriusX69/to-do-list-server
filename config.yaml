@@ -23,5 +23,5 @@ steps:
     inputs:
       azureSubscription: "azureConnectionString"  # Replace with your Azure connection string
       appName: $(azureWebAppName)
-      package: "$(System.DefaultWorkingDirectory)"  # Directly deploy from the repository
+      package: "$(System.DefaultWorkingDirectory)/src"  # Directly deploy from the repository
     displayName: "Deploy to Azure Web App"
