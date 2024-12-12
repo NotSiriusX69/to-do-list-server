@@ -10,7 +10,7 @@ variables:
   nodeVersion: '16.x'
 
 steps:
-- task: UseNode@2
+- task: UseNode@1
   inputs:
     version: $(nodeVersion)
   displayName: 'Install Node.js'
