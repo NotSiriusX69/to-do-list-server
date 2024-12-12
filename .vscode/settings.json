@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/c2d1c963-fbd8-4cdb-aed0-44c17b0e7ea5/resourceGroups/Abbas_Sleiman_RG/providers/Microsoft.Web/sites/abbas-sleiman-webapp",
+    "appService.deploySubpath": "."
+}

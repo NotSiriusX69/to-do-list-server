@@ -1,4 +1,7 @@
 import express from "express";
+import https from "https";
+import path from "path";
+import fs from "fs";
 import session from "express-session";
 import cors from "cors";
 import {
@@ -15,10 +18,17 @@ import {
 
 const app = express();
 const corsOptions = {
-  origin:
-    "http://localhost:5173/",
+  origin: "http://localhost:5173/",
   credentials: true,
 };
+
+// const sslServer = https.createServer(
+//   {
+//     key: fs.readFileSync(path.join("cert", "key.pem")),
+//     cert: fs.readFileSync(path.join("cert", "cert.pem")),
+//   },
+//   app
+// );
 
 app.use(
   session({
@@ -245,6 +255,11 @@ app.get("/get-task/:task_id", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 8080;
+
+// sslServer.listen(PORT, () => {
+//   console.log("HTTPS server running");
+// });
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
