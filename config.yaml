@@ -34,10 +34,3 @@ steps:
       ArtifactName: "drop"
     displayName: "Publish Build Artifacts"
 
-  - task: AzureWebApp@1
-    inputs:
-      azureSubscription: "azureConnectionString" # Replace with your Azure Service Connection name
-      appType: "webAppLinux" # Use 'webApp' for Windows-based App Service
-      appName: $(azureWebAppName)
-      package: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
-    displayName: "Deploy to Azure Web App"
