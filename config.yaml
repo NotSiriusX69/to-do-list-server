@@ -7,7 +7,7 @@ pool:
 variables:
   # Define Azure Web App details
   azureWebAppName: "abbas-sleiman-webapp" # Replace with your Azure Web App name
-  nodeVersion: "16.x"
+  nodeVersion: "20.x"
 
 steps:
   - task: UseNode@1
@@ -18,18 +18,3 @@ steps:
   - script: |
       npm install
     displayName: "Install Dependencies"
-
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: "$(System.DefaultWorkingDirectory)" 
-      archiveType: "zip"
-      archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
-      replaceExistingArchive: true
-    displayName: "Archive Files"
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-      ArtifactName: "drop"
-    displayName: "Publish Build Artifacts"
-

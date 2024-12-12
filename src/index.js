@@ -48,6 +48,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
+  res.json({ test: "test" });
   console.log(req.session);
 });
 
