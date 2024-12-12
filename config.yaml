@@ -18,3 +18,10 @@ steps:
   - script: |
       npm install
     displayName: "Install Dependencies"
+
+ - task: AzureWebApp@1
+    inputs:
+      azureSubscription: "azureConnectionString"  # Replace with your Azure connection string
+      appName: $(azureWebAppName)
+      package: "$(System.DefaultWorkingDirectory)"  # Directly deploy from the repository
+    displayName: "Deploy to Azure Web App"
