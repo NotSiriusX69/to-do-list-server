@@ -19,7 +19,7 @@ steps:
       npm install
     displayName: "Install Dependencies"
 
- - task: AzureWebApp@1
+  - task: AzureWebApp@1
     inputs:
       azureSubscription: "azureConnectionString"  # Replace with your Azure connection string
       appName: $(azureWebAppName)
