@@ -16,7 +16,7 @@ import {
 const app = express();
 const corsOptions = {
   origin:
-    "https://abbas-sleiman-webapp-ewe4gubrauhye4h2.eastus-01.azurewebsites.net",
+    "http://localhost:5173/",
   credentials: true,
 };
 
