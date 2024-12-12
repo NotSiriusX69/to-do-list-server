@@ -21,8 +21,7 @@ steps:
 
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: "$(System.DefaultWorkingDirectory)" # Archive the whole project
-      includeRootFolder: false
+      rootFolderOrFile: "$(System.DefaultWorkingDirectory)" 
       archiveType: "zip"
       archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
       replaceExistingArchive: true
