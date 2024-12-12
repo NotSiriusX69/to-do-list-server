@@ -1,0 +1,47 @@
+trigger:
+- main  # Adjust the branch name if needed
+
+pool:
+  name: 'Default'  # Name of your self-hosted agent pool
+
+variables:
+  # Define Azure Web App details
+  azureWebAppName: 'abbas-sleiman-webapp'  # Replace with your Azure Web App name
+  nodeVersion: '16.x'
+
+steps:
+- task: UseNode@2
+  inputs:
+    version: $(nodeVersion)
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+  displayName: 'Install Dependencies'
+
+- script: |
+    npm run build
+  displayName: 'Build Application'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+  displayName: 'Archive Files'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+  displayName: 'Publish Build Artifacts'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'azureConnectionString'
+    appType: 'webAppLinux' # Use 'webApp' for Windows-based App Service
+    appName: $(azureWebAppName)
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+  displayName: 'Deploy to Azure Web App'
